@@ -150,7 +150,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const chatData = insertChatSchema.parse(req.body);
       
       const chat = await storage.createChat({
-        ...chatData,
         userId,
         title: chatData.title || "New Conversation",
       });

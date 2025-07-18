@@ -161,6 +161,7 @@ export const insertVoiceModelSchema = createInsertSchema(voiceModels).omit({
 
 export const insertChatSchema = createInsertSchema(chats).omit({
   id: true,
+  userId: true, // userId is added server-side from authentication
   createdAt: true,
   updatedAt: true,
 });
