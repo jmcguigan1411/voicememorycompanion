@@ -142,6 +142,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Chat routes
   app.post('/api/chats', isAuthenticated, async (req: any, res) => {
     try {
+      if (!req.user || !req.user.claims || !req.user.claims.sub) {
+        return res.status(401).json({ message: "User not properly authenticated" });
+      }
+      
       const userId = req.user.claims.sub;
       const chatData = insertChatSchema.parse(req.body);
       
