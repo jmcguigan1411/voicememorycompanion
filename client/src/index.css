@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(247, 84%, 67%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(38, 92%, 50%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(158, 64%, 52%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.75rem;
+  
+  /* VoiceKeeper specific colors */
+  --warm: hsl(48, 100%, 96%);
+  --neutral-50: hsl(210, 40%, 98%);
+  --neutral-100: hsl(210, 40%, 96%);
+  --neutral-200: hsl(214, 32%, 91%);
+  --neutral-600: hsl(215, 20%, 65%);
+  --neutral-800: hsl(217, 33%, 17%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(247, 84%, 67%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(38, 92%, 50%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(158, 64%, 52%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  /* Custom utilities for VoiceKeeper */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+@layer components {
+  /* Voice player specific styles */
+  .voice-player-progress {
+    @apply relative overflow-hidden bg-neutral-200 rounded-full h-1;
+  }
+  
+  .voice-player-progress::after {
+    content: '';
+    @apply absolute top-0 left-0 h-full bg-primary transition-all duration-300 rounded-full;
+    width: var(--progress, 0%);
+  }
+  
+  /* Memory capsule hover effects */
+  .memory-capsule-card {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  /* Chat message animations */
+  .message-bubble {
+    @apply animate-in fade-in slide-in-from-bottom-2 duration-300;
+  }
+  
+  /* Upload zone styling */
+  .upload-zone {
+    @apply border-2 border-dashed border-neutral-300 rounded-xl p-6 text-center transition-colors cursor-pointer;
+  }
+  
+  .upload-zone:hover {
+    @apply border-primary/50 bg-primary/5;
+  }
+  
+  .upload-zone.drag-active {
+    @apply border-primary bg-primary/10;
+  }
+}
+
+@layer utilities {
+  /* Gradient backgrounds matching the design */
+  .bg-gradient-voice {
+    background: linear-gradient(135deg, hsl(247, 84%, 67%) 0%, hsl(158, 64%, 52%) 100%);
+  }
+  
+  .bg-gradient-warm {
+    background: linear-gradient(135deg, hsl(247, 84%, 67%, 0.1) 0%, hsl(158, 64%, 52%, 0.1) 100%);
+  }
+  
+  /* Text gradient for headings */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(247, 84%, 67%) 0%, hsl(158, 64%, 52%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Custom scrollbar for chat */
+  .chat-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(214, 32%, 91%) transparent;
+  }
+  
+  .chat-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .chat-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .chat-scroll::-webkit-scrollbar-thumb {
+    background-color: hsl(214, 32%, 91%);
+    border-radius: 3px;
+  }
+  
+  .chat-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(215, 20%, 65%);
+  }
+}
