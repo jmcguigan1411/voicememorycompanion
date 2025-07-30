@@ -69,7 +69,7 @@ app.use((req, res, next) => {
   server.listen(
     {
       port,
-      host: "127.0.0.1", // force IPv4 localhost instead of ::1
+      host: "0.0.0.0", // force IPv4 localhost instead of ::1
       //reusePort: true,
     },
     () => {
